@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,18 +16,20 @@
         }
 
         body {
-            background-color: #f5f5f5;
+            background-color: #f8f9fa;
             line-height: 1.6;
+            color: #333;
         }
 
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+            backdrop-filter: blur(10px);
         }
 
         nav ul {
@@ -42,12 +45,15 @@
         nav a {
             text-decoration: none;
             color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 8px 15px;
+            border-radius: 20px;
         }
 
         nav a:hover {
             color: #007bff;
+            background-color: rgba(0, 123, 255, 0.1);
         }
 
         .container {
@@ -58,47 +64,109 @@
 
         .hero {
             text-align: center;
-            padding: 60px 0;
+            padding: 80px 0;
             background: linear-gradient(135deg, #6B48FF, #00A3FF);
             color: white;
-            border-radius: 15px;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-section {
+            margin-bottom: 60px;
+        }
+
+        .category-title {
+            text-align: center;
             margin-bottom: 40px;
+            color: #2c3e50;
+            font-size: 2em;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #6B48FF, #00A3FF);
+            border-radius: 3px;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
             padding: 20px;
         }
 
         .project-card {
             background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .project-image {
             width: 100%;
-            height: 1000px;
+            height: 200px;
             object-fit: cover;
-            border-radius: 5px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .project-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .project-card p {
+            color: #666;
             margin-bottom: 15px;
         }
 
+        .keywords {
+            color: #007bff;
+            font-weight: 500;
+        }
+
+        .date {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .read-more:hover {
+            color: #0056b3;
+            transform: translateX(5px);
+        }
+
         footer {
-            background: #333;
+            background: #2c3e50;
             color: white;
             text-align: center;
-            padding: 30px;
-            margin-top: 50px;
+            padding: 40px;
+            margin-top: 80px;
         }
 
         .social-links {
@@ -107,13 +175,14 @@
 
         .social-links a {
             color: white;
-            margin: 0 10px;
+            margin: 0 15px;
             font-size: 24px;
-            transition: color 0.3s;
+            transition: all 0.3s;
         }
 
         .social-links a:hover {
             color: #007bff;
+            transform: translateY(-3px);
         }
 
         @media (max-width: 768px) {
@@ -121,13 +190,18 @@
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             nav ul li {
                 margin: 10px 0;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- 导航栏 -->
     <nav>
@@ -143,52 +217,71 @@
     <div class="container">
         <!-- 简介部分 -->
         <section class="hero" id="home">
-            <h1>我的毕业论文作品集</h1>
-            <p>展示我的学术研究成果与设计项目</p>
-            <img src="../Desktop/证件照.png" alt="头像" style="width: 148px; height: 207px; border-radius: 25%; margin-top: 20px;">
+            <div style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%);">
+                <img src="images/logo.png" alt="学校logo" style="height: 60px; margin-bottom: 20px;">
+            </div>
+            <h1>我的作品集</h1>
+            <p>展示我的主要学术成果与设计项目</p>
+            <img src="images/证件照.png" alt="头像"
+                style="width: 148px; height: 207px; border-radius: 25%; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
         </section>
 
         <!-- 项目展示 -->
         <section id="projects">
             <h2 style="text-align: center; margin-bottom: 40px;">我的研究与设计项目</h2>
-            <div class="projects-grid">
-                <!-- 项目卡片 -->
-                <div class="project-card">
-                    <img src="../Desktop/新建文件夹/images/1.png" alt="项目1" class="project-image">
-                    <h3>微信小程序技术架构下的校园一站式服务平台Xpress的开发与应用</h3>
-                    <p>本研究旨在利用微星小程序的轻量化特性，开发一个高效、易用的校园一站式服务平台，同时探索新技术在平台中的应用，提升平台的创新性和竞争力</p>
-                    <p class="keywords">关键词: 微信小程序, HTML, CSS,JavaScript</p>
-                    <p class="date">日期: 2025-05-22</p>
-                    <a href="#" class="read-more">阅读更多 →</a>
-                </div>
+            
+            <!-- 编程类项目 -->
+            <div class="category-section">
+                <h3 class="category-title">编程</h3>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="images/1.png" alt="项目1" class="project-image">
+                        <h3>微信小程序技术架构下的校园一站式服务平台Xpress的开发与应用</h3>
+                        <p>本研究旨在利用微信小程序的轻量化特性，开发一个高效、易用的校园一站式服务平台，同时探索新技术在平台中的应用，提升平台的创新性和竞争力</p>
+                        <p class="keywords">关键词: 微信小程序, HTML, CSS,JavaScript</p>
+                        <p class="date">日期: 2025-05-22</p>
+                        <a href="projects/project1.html" class="read-more">阅读更多 →</a>
+                    </div>
 
-                <div class="project-card">
-                    <img src="../Desktop/新建文件夹/images/jpfc.png" alt="项目2" class="project-image">
-                    <h3>基于UnrealEngine4引擎的游戏《极品飞车：集结》的游戏地图创新设计</h3>
-                    <p>设计旨在创新地图设计，加入动态元素和隐藏捷径，鼓励玩家探索和发现。同时，通过复杂的路况和障碍物设置，增加竞速的策略性和挑战性。</p>
-                    <p class="keywords">关键词: 校企合作, UnrealEngine4, 地图设计</p>
-                    <p class="date">发布日期: 2024-06-24</p>
-                    <a href="#" class="read-more">阅读更多 →</a>
+                    <div class="project-card">
+                        <img src="images/pycharm.png" alt="项目2" class="project-image">
+                        <h3>基于Pandas、Plotly和Seaborn设计的电影评分数据可视化项目</h3>
+                        <p>结合Plotly和Seaborn的可视化功能，设计多种类型的图表（如柱状图、折线图、散点图、热力图等），以直观的方式展示电影评分数据的分布、趋势和关联性。通过动态交互功能，用户可以更深入地探索数据。</p>
+                        <p class="keywords">关键词: 校企合作, UnrealEngine4, 地图设计</p>
+                        <p class="date">发布日期: 2024-12-26</p>
+                        <a href="projects/project2.html" class="read-more">阅读更多 →</a>
+                    </div>
                 </div>
+            </div>
 
-                <div class="project-card">
-                    <img src="../Desktop/新建文件夹/images/jpfc.png" alt="项目2" class="project-image">
-                    <h3>基于UnrealEngine4引擎的游戏《极品飞车：集结》的游戏地图创新设计</h3>
-                    <p>设计旨在创新地图设计，加入动态元素和隐藏捷径，鼓励玩家探索和发现。同时，通过复杂的路况和障碍物设置，增加竞速的策略性和挑战性。</p>
-                    <p class="keywords">关键词: 校企合作, UnrealEngine4, 地图设计</p>
-                    <p class="date">发布日期: 2024-06-24</p>
-                    <a href="#" class="read-more">阅读更多 →</a>
+            <!-- 游戏类项目 -->
+            <div class="category-section">
+                <h3 class="category-title">游戏</h3>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="images/jpfc.png" alt="项目3" class="project-image">
+                        <h3>基于UnrealEngine4引擎的游戏《极品飞车：集结》的游戏地图创新设计</h3>
+                        <p>设计旨在创新地图设计，加入动态元素和隐藏捷径，鼓励玩家探索和发现。同时，通过复杂的路况和障碍物设置，增加竞速的策略性和挑战性。</p>
+                        <p class="keywords">关键词: 校企合作, UnrealEngine4, 地图设计</p>
+                        <p class="date">发布日期: 2024-06-24</p>
+                        <a href="projects/project3.html" class="read-more">阅读更多 →</a>
+                    </div>
                 </div>
+            </div>
 
-                <div class="project-card">
-                    <img src="../Desktop/新建文件夹/images/jpfc.png" alt="项目2" class="project-image">
-                    <h3>基于UnrealEngine4引擎的游戏《极品飞车：集结》的游戏地图创新设计</h3>
-                    <p>设计旨在创新地图设计，加入动态元素和隐藏捷径，鼓励玩家探索和发现。同时，通过复杂的路况和障碍物设置，增加竞速的策略性和挑战性。</p>
-                    <p class="keywords">关键词: 校企合作, UnrealEngine4, 地图设计</p>
-                    <p class="date">发布日期: 2024-06-24</p>
-                    <a href="#" class="read-more">阅读更多 →</a>
+            <!-- 交互设计类项目 -->
+            <div class="category-section">
+                <h3 class="category-title">交互设计</h3>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="images/max2.png" alt="项目4" class="project-image">
+                        <h3>基于Cycling'74 Max8的音乐可视化项目设计与实现</h3>
+                        <p>设计旨在开发用户可自定义的参数界面，允许用户根据自己的喜好调整视觉效果的风格、色彩、动态等，使每个用户都能获得个性化的音乐可视化体验。</p>
+                        <p class="keywords">关键词: Cycling'74 Max8, 音乐可视化, 可视化交互</p>
+                        <p class="date">发布日期: 2023-12-24</p>
+                        <a href="projects/project4.html" class="read-more">阅读更多 →</a>
+                    </div>
                 </div>
-                <!-- 可以继续添加更多项目卡片 -->
             </div>
         </section>
 
@@ -208,13 +301,12 @@
     </div>
 
     <footer>
-        <p>&copy; 22级数字媒体技术01班王祥宇2202150133作品集</p>
+        <p>&copy; 四川电影电视学院22级数字媒体技术01班王祥宇2202150133作品集</p>
     </footer>
 
     <script>
         // JavaScript 交互功能
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const nav = document.querySelector('nav');
             if (window.scrollY > 50) {
                 nav.style.background = 'rgba(255, 255, 255, 0.98)';
@@ -225,7 +317,6 @@
             }
         });
 
-        // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -235,9 +326,8 @@
             });
         });
 
-        // 项目卡片点击效果
         document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('click', function() {
+            card.addEventListener('click', function () {
                 this.style.transform = 'scale(0.98)';
                 setTimeout(() => {
                     this.style.transform = 'scale(1)';
@@ -245,11 +335,11 @@
             });
         });
 
-        // 页面加载动画
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             document.body.style.opacity = '1';
             document.body.style.transition = 'opacity 0.5s ease-in';
         });
     </script>
 </body>
+
 </html>
