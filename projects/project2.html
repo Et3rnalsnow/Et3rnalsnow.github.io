@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基于Pandas、Plotly和Seaborn设计的电影评分数据可视化项目</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .project-header h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .project-header .meta {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .project-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .visualization-container {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .visualization-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .project-content {
+                padding: 20px;
+            }
+        }
+
+        /* 修改logo样式 */
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+        .logo img {
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="../images/logo.png" alt="学校logo">
+    </div>
+    <div class="container">
+        <a href="../index.html" class="back-button">← 返回首页</a>
+        
+        <div class="project-header">
+            <h1>基于Pandas、Plotly和Seaborn设计的电影评分数据可视化项目</h1>
+            <div class="meta">
+                <p>关键词: Pandas, Plotly, Seaborn, 数据可视化</p>
+                <p>发布日期: 2024-12-26</p>
+            </div>
+        </div>
+
+        <div class="project-content">
+            <div class="section">
+                <h2>项目概述</h2>
+                <p>结合Plotly和Seaborn的可视化功能，设计多种类型的图表（如柱状图、折线图、散点图、热力图等），以直观的方式展示电影评分数据的分布、趋势和关联性。通过动态交互功能，用户可以更深入地探索数据。</p>
+            </div>
+
+            <div class="section">
+                <h2>数据可视化展示</h2>
+                <div class="visualization-container">
+                    <img src="../images/pycharm.png" alt="数据可视化展示">
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>技术实现</h2>
+                <p>这里可以添加技术实现的详细内容...</p>
+            </div>
+
+            <div class="section">
+                <h2>项目成果</h2>
+                <p>这里可以添加项目成果的详细内容...</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
