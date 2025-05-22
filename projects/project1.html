@@ -105,15 +105,22 @@
 
         @media (max-width: 768px) {
             .container {
-                padding: 20px;
+                padding: 10px;
             }
-
             .project-content {
-                padding: 20px;
+                padding: 10px;
             }
-
             .image-gallery {
                 grid-template-columns: 1fr;
+            }
+            .logo img {
+                height: 36px;
+            }
+            .project-header h1 {
+                font-size: 1.3em;
+            }
+            .gallery-item img {
+                height: 120px;
             }
         }
 
@@ -129,6 +136,105 @@
             height: 60px;
         }
     </style>
+    <script>
+        // 全屏预览图片（带上一张/下一张功能）
+        document.addEventListener('DOMContentLoaded', function() {
+            const imgs = Array.from(document.querySelectorAll('.gallery-item img'));
+            imgs.forEach(function(img, idx) {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function() {
+                    showOverlay(idx);
+                });
+            });
+            function showOverlay(startIdx) {
+                let current = startIdx;
+                const overlay = document.createElement('div');
+                overlay.style.position = 'fixed';
+                overlay.style.top = 0;
+                overlay.style.left = 0;
+                overlay.style.width = '100vw';
+                overlay.style.height = '100vh';
+                overlay.style.background = 'rgba(0,0,0,0.85)';
+                overlay.style.display = 'flex';
+                overlay.style.alignItems = 'center';
+                overlay.style.justifyContent = 'center';
+                overlay.style.zIndex = 9999;
+                overlay.style.flexDirection = 'row';
+                // 左右按钮
+                const leftBtn = document.createElement('div');
+                leftBtn.innerHTML = '&#10094;';
+                leftBtn.style.position = 'absolute';
+                leftBtn.style.left = '30px';
+                leftBtn.style.top = '50%';
+                leftBtn.style.transform = 'translateY(-50%)';
+                leftBtn.style.fontSize = '3em';
+                leftBtn.style.color = '#fff';
+                leftBtn.style.cursor = 'pointer';
+                leftBtn.style.userSelect = 'none';
+                leftBtn.style.padding = '0 10px';
+                leftBtn.style.opacity = '0.7';
+                leftBtn.style.transition = 'opacity 0.2s';
+                leftBtn.onmouseover = () => leftBtn.style.opacity = '1';
+                leftBtn.onmouseout = () => leftBtn.style.opacity = '0.7';
+                // 右按钮
+                const rightBtn = document.createElement('div');
+                rightBtn.innerHTML = '&#10095;';
+                rightBtn.style.position = 'absolute';
+                rightBtn.style.right = '30px';
+                rightBtn.style.top = '50%';
+                rightBtn.style.transform = 'translateY(-50%)';
+                rightBtn.style.fontSize = '3em';
+                rightBtn.style.color = '#fff';
+                rightBtn.style.cursor = 'pointer';
+                rightBtn.style.userSelect = 'none';
+                rightBtn.style.padding = '0 10px';
+                rightBtn.style.opacity = '0.7';
+                rightBtn.style.transition = 'opacity 0.2s';
+                rightBtn.onmouseover = () => rightBtn.style.opacity = '1';
+                rightBtn.onmouseout = () => rightBtn.style.opacity = '0.7';
+                // 图片
+                const bigImg = document.createElement('img');
+                function setImg(idx) {
+                    bigImg.src = imgs[idx].src;
+                }
+                setImg(current);
+                bigImg.style.maxWidth = '90vw';
+                bigImg.style.maxHeight = '90vh';
+                bigImg.style.borderRadius = '12px';
+                bigImg.style.boxShadow = '0 4px 32px rgba(0,0,0,0.3)';
+                bigImg.style.background = '#fff';
+                overlay.appendChild(leftBtn);
+                overlay.appendChild(bigImg);
+                overlay.appendChild(rightBtn);
+                // 切换函数
+                function prev() {
+                    current = (current - 1 + imgs.length) % imgs.length;
+                    setImg(current);
+                }
+                function next() {
+                    current = (current + 1) % imgs.length;
+                    setImg(current);
+                }
+                leftBtn.onclick = function(e) { e.stopPropagation(); prev(); };
+                rightBtn.onclick = function(e) { e.stopPropagation(); next(); };
+                // 键盘支持
+                function keyHandler(e) {
+                    if (e.key === 'ArrowLeft') prev();
+                    if (e.key === 'ArrowRight') next();
+                    if (e.key === 'Escape') close();
+                }
+                document.addEventListener('keydown', keyHandler);
+                // 关闭
+                function close() {
+                    document.body.removeChild(overlay);
+                    document.removeEventListener('keydown', keyHandler);
+                }
+                overlay.addEventListener('click', close);
+                bigImg.addEventListener('click', function(e) { e.stopPropagation(); });
+                document.body.appendChild(overlay);
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="logo">
