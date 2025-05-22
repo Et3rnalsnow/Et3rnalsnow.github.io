@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>毕业论文作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* CSS 样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #6B48FF, #00A3FF);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #007bff;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <ul>
+            <li><a href="#home">首页</a></li>
+            <li><a href="#projects">项目</a></li>
+            <li><a href="#about">关于</a></li>
+            <li><a href="#contact">联系</a></li>
+        </ul>
+    </nav>
+
+    <!-- 主要内容区 -->
+    <div class="container">
+        <!-- 简介部分 -->
+        <section class="hero" id="home">
+            <h1>我的毕业论文作品集</h1>
+            <p>展示我的学术研究成果与设计项目</p>
+            <img src="avatar.jpg" alt="头像" style="width: 120px; height: 120px; border-radius: 50%; margin-top: 20px;">
+        </section>
+
+        <!-- 项目展示 -->
+        <section id="projects">
+            <h2 style="text-align: center; margin-bottom: 40px;">我的研究项目</h2>
+            <div class="projects-grid">
+                <!-- 项目卡片 -->
+                <div class="project-card">
+                    <img src="project1.jpg" alt="项目1" class="project-image">
+                    <h3>机器学习在金融预测中的应用</h3>
+                    <p>本研究探讨了深度学习算法在股票市场预测中的有效性...</p>
+                    <p class="keywords">关键词: 机器学习, 金融科技, Python</p>
+                    <p class="date">发布日期: 2023-05-15</p>
+                    <a href="#" class="read-more">阅读更多 →</a>
+                </div>
+
+                <div class="project-card">
+                    <img src="project2.jpg" alt="项目2" class="project-image">
+                    <h3>可持续城市发展研究</h3>
+                    <p>基于GIS系统的城市规划优化方案研究...</p>
+                    <p class="keywords">关键词: 城市规划, 可持续发展, GIS</p>
+                    <p class="date">发布日期: 2023-06-02</p>
+                    <a href="#" class="read-more">阅读更多 →</a>
+                </div>
+                <!-- 可以继续添加更多项目卡片 -->
+            </div>
+        </section>
+
+        <!-- 联系方式 -->
+        <section id="contact" style="margin-top: 80px;">
+            <h2 style="text-align: center;">联系我</h2>
+            <div style="text-align: center; margin-top: 30px;">
+                <p>邮箱: your.email@example.com</p>
+                <p>电话: (123) 456-7890</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-researchgate"></i></a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 毕业论文作品集. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript 交互功能
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 项目卡片点击效果
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+
+        // 页面加载动画
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+            document.body.style.transition = 'opacity 0.5s ease-in';
+        });
+    </script>
+</body>
+</html>
