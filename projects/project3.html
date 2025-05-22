@@ -112,11 +112,19 @@
 
         @media (max-width: 768px) {
             .container {
-                padding: 20px;
+                padding: 10px;
             }
-
             .project-content {
-                padding: 20px;
+                padding: 10px;
+            }
+            .logo img {
+                height: 36px;
+            }
+            .project-header h1 {
+                font-size: 1.3em;
+            }
+            .game-screenshot img {
+                height: 120px;
             }
         }
 
@@ -132,6 +140,105 @@
             height: 60px;
         }
     </style>
+    <script>
+        // 全屏预览图片（带上一张/下一张功能）
+        document.addEventListener('DOMContentLoaded', function() {
+            const imgs = Array.from(document.querySelectorAll('.game-screenshot img'));
+            imgs.forEach(function(img, idx) {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function() {
+                    showOverlay(idx);
+                });
+            });
+            function showOverlay(startIdx) {
+                let current = startIdx;
+                const overlay = document.createElement('div');
+                overlay.style.position = 'fixed';
+                overlay.style.top = 0;
+                overlay.style.left = 0;
+                overlay.style.width = '100vw';
+                overlay.style.height = '100vh';
+                overlay.style.background = 'rgba(0,0,0,0.85)';
+                overlay.style.display = 'flex';
+                overlay.style.alignItems = 'center';
+                overlay.style.justifyContent = 'center';
+                overlay.style.zIndex = 9999;
+                overlay.style.flexDirection = 'row';
+                // 左右按钮
+                const leftBtn = document.createElement('div');
+                leftBtn.innerHTML = '&#10094;';
+                leftBtn.style.position = 'absolute';
+                leftBtn.style.left = '30px';
+                leftBtn.style.top = '50%';
+                leftBtn.style.transform = 'translateY(-50%)';
+                leftBtn.style.fontSize = '3em';
+                leftBtn.style.color = '#fff';
+                leftBtn.style.cursor = 'pointer';
+                leftBtn.style.userSelect = 'none';
+                leftBtn.style.padding = '0 10px';
+                leftBtn.style.opacity = '0.7';
+                leftBtn.style.transition = 'opacity 0.2s';
+                leftBtn.onmouseover = () => leftBtn.style.opacity = '1';
+                leftBtn.onmouseout = () => leftBtn.style.opacity = '0.7';
+                // 右按钮
+                const rightBtn = document.createElement('div');
+                rightBtn.innerHTML = '&#10095;';
+                rightBtn.style.position = 'absolute';
+                rightBtn.style.right = '30px';
+                rightBtn.style.top = '50%';
+                rightBtn.style.transform = 'translateY(-50%)';
+                rightBtn.style.fontSize = '3em';
+                rightBtn.style.color = '#fff';
+                rightBtn.style.cursor = 'pointer';
+                rightBtn.style.userSelect = 'none';
+                rightBtn.style.padding = '0 10px';
+                rightBtn.style.opacity = '0.7';
+                rightBtn.style.transition = 'opacity 0.2s';
+                rightBtn.onmouseover = () => rightBtn.style.opacity = '1';
+                rightBtn.onmouseout = () => rightBtn.style.opacity = '0.7';
+                // 图片
+                const bigImg = document.createElement('img');
+                function setImg(idx) {
+                    bigImg.src = imgs[idx].src;
+                }
+                setImg(current);
+                bigImg.style.maxWidth = '90vw';
+                bigImg.style.maxHeight = '90vh';
+                bigImg.style.borderRadius = '12px';
+                bigImg.style.boxShadow = '0 4px 32px rgba(0,0,0,0.3)';
+                bigImg.style.background = '#fff';
+                overlay.appendChild(leftBtn);
+                overlay.appendChild(bigImg);
+                overlay.appendChild(rightBtn);
+                // 切换函数
+                function prev() {
+                    current = (current - 1 + imgs.length) % imgs.length;
+                    setImg(current);
+                }
+                function next() {
+                    current = (current + 1) % imgs.length;
+                    setImg(current);
+                }
+                leftBtn.onclick = function(e) { e.stopPropagation(); prev(); };
+                rightBtn.onclick = function(e) { e.stopPropagation(); next(); };
+                // 键盘支持
+                function keyHandler(e) {
+                    if (e.key === 'ArrowLeft') prev();
+                    if (e.key === 'ArrowRight') next();
+                    if (e.key === 'Escape') close();
+                }
+                document.addEventListener('keydown', keyHandler);
+                // 关闭
+                function close() {
+                    document.body.removeChild(overlay);
+                    document.removeEventListener('keydown', keyHandler);
+                }
+                overlay.addEventListener('click', close);
+                bigImg.addEventListener('click', function(e) { e.stopPropagation(); });
+                document.body.appendChild(overlay);
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="logo">
@@ -158,27 +265,45 @@
                 <h2>游戏截图</h2>
                 <div class="game-screenshot">
                     <img src="../images/jpfc.png" alt="游戏地图设计展示">
+                    <img src="../images/32.png" alt="游戏截图32">
+                    <img src="../images/33.png" alt="游戏截图33">
+                    <img src="../images/34.png" alt="游戏截图34">
+                    <img src="../images/35.png" alt="游戏截图35">
+                    <img src="../images/36.png" alt="游戏截图36">
+                    <img src="../images/37.png" alt="游戏截图37">
+                    <img src="../images/38.png" alt="游戏截图38">
+                    <img src="../images/39.png" alt="游戏截图39">
+                    <img src="../images/40.png" alt="游戏截图40">
                 </div>
             </div>
 
             <div class="section">
                 <h2>设计特点</h2>
                 <ul class="feature-list">
-                    <li>动态环境系统：实时变化的路况和天气效果</li>
+                    <li>动态路况系统：实时变化的路况</li>
                     <li>隐藏捷径：精心设计的秘密路线，增加探索乐趣</li>
                     <li>多样化地形：城市、山地、海岸线等多种场景</li>
-                    <li>互动元素：可破坏的障碍物和动态路障</li>
+                    <li>互动元素：动态路障</li>
                 </ul>
             </div>
 
             <div class="section">
                 <h2>技术实现</h2>
-                <p>这里可以添加技术实现的详细内容...</p>
+                <p>在《极品飞车：集结》的游戏地图设计中，我们采取了一系列创新的设计思路和技术方法，以确保地图不仅美观而且具有高度的可玩性和挑战性。<br>
+                    以下是我们在技术实现方面的一些关键点：<br>
+                    1. 动态环境系统：设计了一个动态路况系统，使得游戏中的路况能够实时变化，从而为玩家提供更加丰富的游戏体验。这种动态变化不仅增加了游戏的视觉吸引力，还对玩家的策略选择产生了影响。<br>
+                    2. 隐藏捷径的巧妙布局：通过精心设计的隐藏捷径，我们鼓励玩家探索地图的每一个角落。这些捷径不仅为玩家提供了快速通过关卡的途径，还增加了游戏的重玩价值和探索乐趣。<br>
+                    3. 多样化地形的构建：游戏中的地形设计涵盖了城市、天空、海岸线等多种场景，每种地形都有其独特的挑战和策略要求。这种多样化的地形设计不仅丰富了游戏的视觉效果，还为玩家提供了不同的驾驶体验。<br>
+                    4. 互动元素的引入：我们在游戏中引入了多种互动元素，如动态路障和可破坏的环境，这些元素不仅增加了游戏的趣味性，还为玩家提供了更多的策略选择。<br>
+                    5. 玩家反馈的整合：在设计过程中，我们重视玩家的反馈，通过玩家测试和反馈收集，不断调整和优化地图设计，以确保最终的地图设计能够满足玩家的期望和需求。</p>
             </div>
 
             <div class="section">
                 <h2>项目成果</h2>
-                <p>这里可以添加项目成果的详细内容...</p>
+                <p> 1. 增强的玩家参与度：通过创新的地图设计，我们成功地提高了玩家的参与度和游戏的吸引力。玩家在游戏中的探索行为和重复游戏的意愿显著增加。<br>
+                    2. 提升的游戏评价：游戏发布后，我们收到了来自玩家和游戏评论家的评价。特别是在地图设计和游戏创新性方面，该设计得到了高度评价。<br>
+                    3. 促进的社区互动：游戏的地图设计激发了玩家社区的讨论和互动。玩家们分享他们的探索发现，讨论最佳路线和策略，这种社区互动进一步增强了游戏的吸引力。<br>
+                    4. 设计团队的成长：通过这个项目，我在创意思维、项目管理方面都有了显著的成长。这个项目不仅为我们带来了宝贵的经验，也为未来的游戏设计项目奠定了坚实的基础。</p>
             </div>
         </div>
     </div>
